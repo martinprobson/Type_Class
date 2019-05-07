@@ -7,7 +7,6 @@ List(1,2,3) match {
   case x :: xs => "Many"
 }
 
-
 def quickSort[T](l: List[T])(implicit o: Ordering[T]):List[T] = l match {
   case Nil => Nil: List[T]
   case x :: xs => {
@@ -30,3 +29,13 @@ quickSort(List(3,2,11,1,1,1,1,1,1,100,56,3,2,1,4,5,5,5,5))
 quickSort(List(Person1("Martin",54),
   Person1("Gemma",19),
   Person1("Natasha",16)))(NameOrdering)
+
+def quickSort1[T](list: List[T])(implicit o: Ordering[T]): List[T] =
+  list match {
+    case Nil => Nil
+    case (head :: tail) =>
+      // select head as the pivot point
+      val pivot = head
+      val (lessThanPivot, greaterThanPivot) = tail.partition(e => o.lteq(pivot, e))
+      quickSort1(lessThanPivot) ::: pivot :: quickSort1(greaterThanPivot)
+  }
