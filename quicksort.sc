@@ -21,9 +21,12 @@ final case class Person1(name: String, age: Int)
 implicit object AgeOrdering extends Ordering[Person1] {
   def compare(a: Person1, b: Person1) = a.age compareTo b.age
 }
+implicit object NameOrdering extends Ordering[Person1] {
+  def compare(a: Person1, b: Person1) = a.name compareTo b.name
+}
 
 quickSort(List(3,2,11,1,1,1,1,1,1,100,56,3,2,1,4,5,5,5,5))
 
 quickSort(List(Person1("Martin",54),
   Person1("Gemma",19),
-  Person1("Natasha",16)))
+  Person1("Natasha",16)))(NameOrdering)
