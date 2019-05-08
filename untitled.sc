@@ -16,4 +16,15 @@ object Extractor {
 }
 
 Extractor.extract[String](List("a",1,2,3,4,"ZZZ",'c'))
+def fibonacci(x: Long): Long = x match {
+  case 0 => 0
+  case 1 => 1
+  case x => fibonacci(x-1) + fibonacci(x-2)
+}
+
+(1 to 50).map(_.toLong).map(fibonacci).take(10)
+
+
+
+
 
