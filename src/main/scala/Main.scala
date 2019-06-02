@@ -34,4 +34,10 @@ object Main extends App {
   Printable.print(10)
   println(Printable.format("Martin"))
   println(Printable.format(10))
+
+  import scala.util.Try
+
+  Try {
+    Integer.parseInt("M")
+  }
 }

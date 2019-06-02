@@ -39,3 +39,15 @@ def quickSort1[T](list: List[T])(implicit o: Ordering[T]): List[T] =
       val (lessThanPivot, greaterThanPivot) = tail.partition(e => o.lteq(pivot, e))
       quickSort1(lessThanPivot) ::: pivot :: quickSort1(greaterThanPivot)
   }
+
+val p = add(1) _
+
+add(1)(2)
+val a = Some(1)
+val l: Long = 2
+
+a.getOrElse(3.toLong)
+
+def add(a: Int)(b: Int) = a + b
+
+p(2)
