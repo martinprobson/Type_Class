@@ -3,17 +3,16 @@
 
 List(1,2,3) match {
   case Nil => "Nil"
-  case x :: Nil => "one"
-  case x :: xs => "Many"
+  case _ :: Nil => "one"
+  case _ :: _ => "Many"
 }
 
 def quickSort[T](l: List[T])(implicit o: Ordering[T]):List[T] = l match {
   case Nil => Nil: List[T]
-  case x :: xs => {
+  case x :: xs =>
     quickSort(xs.filter(e => o.lteq(e,x))) ++
       List(x) ++
     quickSort(xs.filter(e => o.gt(e,x)))
-  }
 }
 
 final case class Person1(name: String, age: Int)
@@ -33,7 +32,7 @@ quickSort(List(Person1("Martin",54),
 def quickSort1[T](list: List[T])(implicit o: Ordering[T]): List[T] =
   list match {
     case Nil => Nil
-    case (head :: tail) =>
+    case head :: tail =>
       // select head as the pivot point
       val pivot = head
       val (lessThanPivot, greaterThanPivot) = tail.partition(e => o.lteq(pivot, e))

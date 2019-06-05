@@ -1,3 +1,5 @@
+package net.martinprobson.cats.printable
+
 object PrintableInstances {
   implicit val stringPrintable: Printable[String] =
     (value: String) => s"Printable string: $value"

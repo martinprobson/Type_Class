@@ -1,3 +1,5 @@
+package net.martinprobson.cats.json
+
 object JsonWriterInstances {
   implicit val stringWriter: JsonWriter[String] =
     (value: String) => JsString(value)
@@ -11,16 +13,14 @@ object JsonWriterInstances {
   implicit val intWriter: JsonWriter[Int] =
     (value: Int) => JsNumber(value.toDouble)
 
-  implicit val optionWriterInt: JsonWriter[Option[Int]] =
-    (value: Option[Int]) => value match {
-      case Some(i) => JsNumber(i.toDouble)
-      case None => JsNull
-    }
+  implicit val optionWriterInt: JsonWriter[Option[Int]] = {
+    case Some(i) => JsNumber(i.toDouble)
+    case None => JsNull
+  }
 
   // Recursive search for implicits....
-  implicit def optionWriter[A](implicit writer: JsonWriter[A]): JsonWriter[Option[A]] =
-    (value: Option[A]) => value match {
-      case Some(v) => writer.write(v)
-      case None => JsNull
-    }
+  implicit def optionWriter[A](implicit writer: JsonWriter[A]): JsonWriter[Option[A]] = {
+    case Some(v) => writer.write(v)
+    case None => JsNull
+  }
 }

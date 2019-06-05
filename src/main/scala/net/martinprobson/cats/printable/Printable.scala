@@ -1,3 +1,5 @@
+package net.martinprobson.cats.printable
+
 /* This is a type class */
 trait Printable[A] {
   def format(value: A): String
